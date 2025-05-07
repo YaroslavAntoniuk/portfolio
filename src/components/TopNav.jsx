@@ -124,7 +124,6 @@ const TopNav = () => {
                 key={section}
                 active={activeSection === section}
                 onClick={() => handleSectionClick(section)}
-                href={`#${section}`}
               >
                 {label}
               </NavButton>
