@@ -14,13 +14,13 @@ const InfoBox = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[1],
+  transform: 'scale(1)',
+  transition: 'transform 0.5s ease',
 
   '&:hover': {
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
-    cursor: 'pointer',
     transform: 'scale(1.05)',
-    transition: 'transform 0.5s ease',
   },
 }));
 
