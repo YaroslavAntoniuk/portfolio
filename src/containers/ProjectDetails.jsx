@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import { projectDetails } from '../utils/constants';
+import { useEffect } from 'react';
 
 // Styled components
 const PageContainer = styled(Box)(({ theme }) => ({
@@ -62,19 +63,6 @@ const StatCard = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
 }));
 
-const ActionButton = styled(Button)(({ theme }) => ({
-  background: 'rgba(255, 255, 255, 0.1)',
-  color: '#fff',
-  padding: '10px 16px',
-  borderRadius: '8px',
-  '&:hover': {
-    background: 'rgba(255, 255, 255, 0.2)',
-  },
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(1),
-}));
-
 const TechChip = styled(Chip)(({ theme }) => ({
   background: 'rgba(255, 255, 255, 0.07)',
   color: '#fff',
@@ -118,6 +106,10 @@ const ProjectDetails = () => {
   const { id } = useParams();
   const projectId = parseInt(id, 10);
   const project = projectDetails.find((p) => p.id === projectId);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' }); 
+  }, []);
 
   if (!project) {
     return (

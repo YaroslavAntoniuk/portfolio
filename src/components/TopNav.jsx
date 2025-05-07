@@ -1,21 +1,22 @@
-import React from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
-  Toolbar,
-  Typography,
   Box,
   Button,
-  IconButton,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemText,
-  useTheme,
+  Toolbar,
+  Typography,
   useMediaQuery,
+  useTheme,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const NavButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'active',
@@ -34,6 +35,7 @@ const NavButton = styled(Button, {
 const TopNav = () => {
   const [activeSection, setActiveSection] = React.useState('home');
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -43,6 +45,8 @@ const TopNav = () => {
     setDrawerOpen(false); // Close drawer on selection
     if (window.location.pathname === '/' && document.getElementById(section)) {
       document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(`/#${section}`);
     }
   };
 
