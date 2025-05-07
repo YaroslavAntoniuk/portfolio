@@ -23,10 +23,11 @@ const StackBoxItem = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(1),
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[1],
+  userSelect: 'none',
+
   '&:hover': {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.action.hover,
     color: theme.palette.common.white,
-    cursor: 'pointer',
   },
 }));
 

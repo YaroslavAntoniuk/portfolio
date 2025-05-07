@@ -10,6 +10,8 @@ const StyledItem = styled(ListItem)(({ theme }) => ({
   width: 'fit-content',
   margin: theme.spacing(1),
   padding: theme.spacing(2),
+  userSelect: 'none',
+  
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
   },
