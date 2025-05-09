@@ -48,7 +48,7 @@ export const StackItems = [
 
 export const certificates = [
   {
-    label: 'NextJS',
+    label: 'NestJS',
     url: 'https://udemy-certificate.s3.amazonaws.com/image/UC-19567fba-09ab-4a78-acd9-73a5e9122159.jpg?v=1650488179000',
   },
   {
