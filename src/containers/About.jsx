@@ -35,10 +35,10 @@ const About = () => {
     <InfoBox key={index}>
       <Box>
         <item.icon sx={{ fontSize: 40, color: '#fff', mb: 2 }} />
-        <Typography variant="body1">{item.label}</Typography>
+        <Typography variant="body1" color='text.primary'>{item.label}</Typography>
       </Box>
 
-      <Typography variant="h3">{item.value}</Typography>
+      <Typography variant="h3" color='text.primary'>{item.value}</Typography>
     </InfoBox>
   ));
 
