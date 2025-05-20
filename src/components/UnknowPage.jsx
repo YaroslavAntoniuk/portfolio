@@ -1,6 +1,8 @@
-import { Box, Container, Typography, Button, styled } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
 import WestIcon from '@mui/icons-material/West';
+import { Box, Button, Container, styled, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { trackEvent } from '../utils/mixpanel';
 
 const BackButton = styled(Button)(() => ({
   background: 'rgba(255, 255, 255, 0.1)',
@@ -13,6 +15,12 @@ const BackButton = styled(Button)(() => ({
 }));
 
 const UnknowPage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    trackEvent('Page Viewed', { page: location.pathname });
+  }, [location]);
+
   return (
     <Container maxWidth="lg">
       <Box sx={{ pt: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>

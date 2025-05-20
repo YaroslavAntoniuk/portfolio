@@ -14,7 +14,7 @@ import ProjectDetails from './containers/ProjectDetails';
 import Projects from './containers/Projects';
 import Skills from './containers/Skills';
 import theme from './theme';
-
+import { trackEvent } from './utils/mixpanel';
 const Container = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -41,6 +41,7 @@ const HomePage = () => {
         }, 0);
       }
     }
+    trackEvent('Page Viewed', { page: location.pathname });
   }, [location]);
 
   return (

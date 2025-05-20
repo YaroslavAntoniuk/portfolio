@@ -7,7 +7,7 @@ import {
   Typography
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link as RouterLink, useParams } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
 import FullScreenModal from '../components/FullScreenModal';
 import Features from '../components/Project/Features';
 import Header from '../components/Project/Header';
@@ -69,6 +69,7 @@ const ProjectUrl = styled(Typography)(({ theme }) => ({
 const ProjectDetails = () => {
   const { id } = useParams();
   const projectId = parseInt(id, 10);
+  const location = useLocation();
   const project = projectDetails.find((p) => p.id === projectId);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -77,7 +78,8 @@ const ProjectDetails = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+    trackEvent('Page Viewed', { page: location.pathname });
+  }, [location]);
 
   const openFullscreen = (index) => {
     setActiveIndex(index);
