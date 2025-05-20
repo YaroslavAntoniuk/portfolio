@@ -65,7 +65,7 @@ const PortfolioItem = ({
             <Typography variant="h6" color="text.primary">
               {item.label}
             </Typography>
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="p" color="text.secondary" sx={{ display: 'flex', textOverflow: 'ellipsis', overflow: 'hidden', width: '200px', whiteSpace: 'nowrap' }}>
               {item.description}
             </Typography>
           </Box>

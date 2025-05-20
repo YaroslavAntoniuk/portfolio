@@ -1,26 +1,27 @@
-import CodeIcon from '@mui/icons-material/Code';
-import LayersIcon from '@mui/icons-material/Layers';
-import StarIcon from '@mui/icons-material/Star';
 import WestIcon from '@mui/icons-material/West';
 import {
   Box,
   Button,
-  Chip,
   Container,
-  Stack,
   styled,
-  Typography,
+  Typography
 } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
+import FullScreenModal from '../components/FullScreenModal';
+import Features from '../components/Project/Features';
+import Header from '../components/Project/Header';
+import ImageCarousel from '../components/Project/ImageCarousel';
+import Stats from '../components/Project/Stats';
+import TechList from '../components/Project/TechList';
 import { projectDetails } from '../utils/constants';
-import { useEffect } from 'react';
+import { getTechDetails } from '../utils/helper';
 
-// Styled components
 const PageContainer = styled(Box)(({ theme }) => ({
   background: '#060818',
   color: '#fff',
-  minHeight: '100vh',
   padding: theme.spacing(2),
+  paddingBottom: theme.spacing(8),
   borderRadius: '12px',
   marginBottom: theme.spacing(4),
 }));
@@ -51,65 +52,41 @@ const ProjectDescription = styled(Typography)(({ theme }) => ({
   maxWidth: '600px',
 }));
 
-const StatCard = styled(Box)(({ theme }) => ({
-  background: 'rgba(255, 255, 255, 0.05)',
-  borderRadius: '12px',
-  padding: theme.spacing(2),
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(1.5),
-  width: '45%',
-  minWidth: '220px',
-  justifyContent: 'space-between',
-}));
+const ProjectUrl = styled(Typography)(({ theme }) => ({
+  color: theme.palette.info,
+  fontSize: '1.1rem',
+  marginBottom: theme.spacing(4),
+  maxWidth: '600px',
+  textDecoration: 'none',
+  marginTop: theme.spacing(2),
+  display: 'block',
 
-const TechChip = styled(Chip)(({ theme }) => ({
-  background: 'rgba(255, 255, 255, 0.07)',
-  color: '#fff',
-  margin: theme.spacing(0.5),
-  borderRadius: '8px',
-  '& .MuiChip-icon': {
-    color: '#6a6a6a',
+  '&:hover': {
+    textDecoration: 'underline',
   },
-}));
-
-const SectionTitle = styled(Typography)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(1),
-  fontWeight: '600',
-  fontSize: '1.5rem',
-  marginBottom: theme.spacing(2),
-}));
-
-const FeatureCard = styled(Box)(({ theme }) => ({
-  background: 'rgba(26, 32, 53, 0.8)',
-  borderRadius: '12px',
-  padding: theme.spacing(3),
-}));
-
-const FeatureItem = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  gap: theme.spacing(2),
-  marginBottom: theme.spacing(2),
-  alignItems: 'flex-start',
-}));
-
-const FeatureBullet = styled(Box)(() => ({
-  color: '#8A2BE2',
-  display: 'flex',
-  alignItems: 'center',
-  fontSize: '1.5rem',
 }));
 
 const ProjectDetails = () => {
   const { id } = useParams();
   const projectId = parseInt(id, 10);
   const project = projectDetails.find((p) => p.id === projectId);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { techSections, totalTechCount } = getTechDetails(project);
+  const achievementsCount = project.achievements?.length || 0;
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' }); 
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
+
+  const openFullscreen = (index) => {
+    setActiveIndex(index);
+    setIsFullscreen(true);
+  };
+
+  const closeFullscreen = () => {
+    setIsFullscreen(false);
+  };
 
   if (!project) {
     return (
@@ -128,191 +105,47 @@ const ProjectDetails = () => {
     );
   }
 
-  // Determine which technologies arrays to use
-  const techSections = [];
-  let totalTechCount = 0;
-
-  if (project.technologies) {
-    totalTechCount += project.technologies.length;
-    techSections.push({
-      title: 'Technologies Used',
-      techs: project.technologies,
-    });
-  }
-
-  if (project.technologiesMobile) {
-    totalTechCount += project.technologiesMobile.length;
-    techSections.push({
-      title: 'Mobile Technologies',
-      techs: project.technologiesMobile,
-    });
-  }
-
-  if (project.technologiesWeb) {
-    totalTechCount += project.technologiesWeb.length;
-    techSections.push({
-      title: 'Web Technologies',
-      techs: project.technologiesWeb,
-    });
-  }
-
-  if (project.technologiesBackend) {
-    totalTechCount += project.technologiesBackend.length;
-    techSections.push({
-      title: 'Backend Technologies',
-      techs: project.technologiesBackend,
-    });
-  }
-
-  const achievementsCount = project.achievements?.length || 0;
-
   return (
-    <PageContainer>
-      <Container maxWidth="lg">
-        {/* Header with back button */}
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 2 }}>
-          <BackButton component={RouterLink} to="/#portfolio" startIcon={<WestIcon />}>
-            Back
-          </BackButton>
-          <Typography color="text.secondary" sx={{ mx: 1 }}>
-            |
-          </Typography>
-          <Typography sx={{ color: '#8A8A8A', textDecoration: 'none' }}>
-            Projects
-          </Typography>
-          <Typography color="text.secondary" sx={{ mx: 1 }}>
-            /
-          </Typography>
-          <Typography sx={{ color: '#c7c7c7' }}>{project.label}</Typography>
-        </Box>
+    <>
+      <PageContainer>
+        <Container maxWidth="lg" sx={{ width: '100%', position: 'relative' }}>
+          <Header label={project.label} />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              gap: 4,
+              mt: 4,
+              width: '100%',
+            }}
+          >
+            <Box sx={{ flex: 1, width: '100%' }}>
+              <ProjectTitle variant="h1">{project.label}</ProjectTitle>
+              <ProjectDescription>{project.description}</ProjectDescription>
+              {project.url && (
+                <ProjectUrl component={RouterLink} to={project.url} target="_blank">{project.url}</ProjectUrl>
+              )}
 
-        {/* Main content */}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            gap: 4,
-            mt: 4,
-          }}
-        >
-          {/* Left column */}
-          <Box sx={{ flex: 1 }}>
-            <ProjectTitle variant="h1">{project.label}</ProjectTitle>
-
-            <ProjectDescription>{project.description}</ProjectDescription>
-
-            {/* Stats cards */}
-            <Box
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 2,
-                mb: 4,
-                justifyContent: 'space-between',
-              }}
-            >
-              <StatCard>
-                <Box>
-                  <Typography variant="h5" fontWeight="bold">
-                    {totalTechCount}
-                  </Typography>
-                  <Typography variant="body2" color="#8A8A8A">
-                    Total Technology
-                  </Typography>
-                </Box>
-                <CodeIcon sx={{ color: '#6a6a6a' }} />
-              </StatCard>
-
-              <StatCard>
-                <Box>
-                  <Typography variant="h5" fontWeight="bold">
-                    {achievementsCount}
-                  </Typography>
-                  <Typography variant="body2" color="#8A8A8A">
-                    Key Features
-                  </Typography>
-                </Box>
-                <LayersIcon sx={{ color: '#6a6a6a' }} />
-              </StatCard>
+              <Stats totalTechCount={totalTechCount} achievementsCount={achievementsCount} />
+              <TechList techSections={techSections} />
             </Box>
 
-            {/* Technologies */}
-            <Box sx={{ mb: 4 }}>
-              <SectionTitle>
-                <CodeIcon /> Technologies Used
-              </SectionTitle>
-
-              {techSections.map((section, index) => (
-                <Box key={index} sx={{ mb: 3 }}>
-                  {techSections.length > 1 && (
-                    <Typography variant="h6" sx={{ mb: 1, color: '#8A8A8A' }}>
-                      {section.title}
-                    </Typography>
-                  )}
-                  <Stack direction="row" flexWrap="wrap" gap={1}>
-                    {section.techs.map((tech, techIndex) => (
-                      <TechChip key={techIndex} label={tech} />
-                    ))}
-                  </Stack>
-                </Box>
-              ))}
+            <Box sx={{ flex: 1, width: '100%' }}>
+              <ImageCarousel project={project} projectId={projectId} openFullscreen={openFullscreen} setActiveIndex={setActiveIndex} />
+              <Features achievements={project?.achievements} />
             </Box>
           </Box>
+        </Container>
+      </PageContainer>
 
-          {/* Right column */}
-          <Box sx={{ flex: 1 }}>
-            {/* Project image */}
-            {project.url && (
-              <Box
-                sx={{
-                  mb: 4,
-                  background: 'linear-gradient(135deg, #00C853, #008F7B)',
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  p: 3,
-                  color: '#fff',
-                }}
-              >
-                <Typography variant="h3" sx={{ mb: 1 }}>
-                  Socializing
-                  <br />
-                  feels natural
-                </Typography>
-                <Typography sx={{ mb: 2 }}>
-                  Download the {project.label || `Project ${projectId}`} App now
-                </Typography>
-                <img
-                  src={project.url || '/api/placeholder/600/400'}
-                  alt={project.label || `Project ${projectId}`}
-                  style={{
-                    maxWidth: '100%',
-                    borderRadius: '12px',
-                  }}
-                />
-              </Box>
-            )}
-
-            {/* Achievements/Features */}
-            {project.achievements && project.achievements.length > 0 && (
-              <FeatureCard>
-                <SectionTitle sx={{ color: '#fff', mb: 3 }}>
-                  <StarIcon sx={{ color: '#FFD700' }} /> Key Features
-                </SectionTitle>
-
-                {project.achievements.map((achievement, index) => (
-                  <FeatureItem key={index}>
-                    <FeatureBullet>•</FeatureBullet>
-                    <Typography variant="body1" color="#c7c7c7">
-                      {achievement}
-                    </Typography>
-                  </FeatureItem>
-                ))}
-              </FeatureCard>
-            )}
-          </Box>
-        </Box>
-      </Container>
-    </PageContainer>
+      <FullScreenModal
+        isOpen={isFullscreen}
+        onClose={closeFullscreen}
+        project={project}
+        projectId={projectId}
+        activeIndex={activeIndex}
+      />
+    </>
   );
 };
 

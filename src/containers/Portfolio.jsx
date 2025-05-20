@@ -1,11 +1,12 @@
 import { Box, Button, Container, List, Typography } from '@mui/material';
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import PortfolioItem from '../components/PortfolioItem';
 import TabSwitcher from '../components/TabSwitcher';
 import { certificates, PortfolioTabs, projects } from '../utils/constants';
 
 const Portfolio = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = React.useState(PortfolioTabs.Projects);
 
   const handleTabChange = (tab) => {
@@ -54,7 +55,16 @@ const Portfolio = () => {
           activeTab={activeTab}
           onTabChange={handleTabChange}
         />
-
+        {/** See All projects button */}
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4 }}>
+          <Button
+            sx={{ textDecoration: 'underline' }}
+            color="transparent"
+            onClick={() => navigate('/projects')}
+          >
+            See All Projects
+          </Button>
+        </Box>
         <List
           sx={{
             width: '100%',
@@ -68,7 +78,7 @@ const Portfolio = () => {
           }}
         >
           {activeTab === PortfolioTabs.Projects &&
-            projects.map((item, index) => (
+            projects.slice(0, 3).map((item, index) => (
               <PortfolioItem key={index} item={item} />
             ))}
           {activeTab === PortfolioTabs.Certificates &&
