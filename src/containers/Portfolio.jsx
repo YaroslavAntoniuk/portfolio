@@ -55,8 +55,8 @@ const Portfolio = () => {
           activeTab={activeTab}
           onTabChange={handleTabChange}
         />
-        {/** See All projects button */}
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4 }}>
+
+        <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' }, mt: 4 }}>
           <Button
             sx={{ textDecoration: 'underline' }}
             color="transparent"

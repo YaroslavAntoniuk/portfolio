@@ -6,8 +6,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 const ModalContainer = styled(Box)(({ theme }) => ({
-  width: '100vw',
-  height: '100vh',
+  width: '100%',
+  height: '100%',
   backgroundColor: 'rgba(0, 0, 0, 0.8)',
   position: 'relative',
   display: 'flex',

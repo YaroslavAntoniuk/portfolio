@@ -15,6 +15,7 @@ import Projects from './containers/Projects';
 import Skills from './containers/Skills';
 import theme from './theme';
 import { trackEvent } from './utils/mixpanel';
+import ScrollToTop from './components/ScrollToTop';
 const Container = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -61,6 +62,7 @@ function App() {
       <SVGWaveBackground />
       <TopNav />
       <Container>
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />

@@ -110,8 +110,8 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <PageContainer>
-        <Container maxWidth="lg" sx={{ width: '100%', position: 'relative' }}>
+      <PageContainer sx={{ maxWidth: { xs: '400px', sm: '100%' }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Container sx={{ width: '100%', position: 'relative' }}>
           <Header label={project.label} />
           <Box
             sx={{
