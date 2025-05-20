@@ -5,28 +5,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Item = styled(ListItem)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  gridTemplateRows: '200px auto',
   width: '100%',
-  height: '300px',
-  justifyContent: 'center',
-  padding: theme.spacing(2),
+  height: '350px',
+  padding: 0,
   backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[1],
-
-  '&:hover': {
-    '& img': {
-      transform: 'scale(1.1)',
-    },
-    color: theme.palette.common.white,
-  },
-
-  '& img': {
-    transform: 'scale(1)',
-    transition: 'transform 0.5s ease-in-out',
-  },
 }));
 
 const PortfolioItem = ({
@@ -51,13 +38,14 @@ const PortfolioItem = ({
         <img
           src={item.url}
           alt={item.label}
-          style={{ width: 150, height: 150 }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px 8px 0 0' }}
         />
         <Box
           sx={{
             width: '100%',
             mt: 2,
             display: 'flex',
+            padding: 2,
             justifyContent: centered ? 'center' : 'space-between',
           }}
         >

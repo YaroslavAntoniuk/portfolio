@@ -4,7 +4,7 @@ import { projects } from '../utils/constants';
 
 const Projects = () => {
   return (
-    <Box>
+    <Box sx={{ mb: 4}}>
       <Container maxWidth="lg">
         <Typography variant="h4" sx={{ mb: 4 }}>All Projects</Typography>
         <List
