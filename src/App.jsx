@@ -1,17 +1,19 @@
 import { ThemeProvider } from '@mui/material';
 import { styled } from '@mui/system';
 import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import ScrollToTopButton from './components/ScrollTopButton';
 import SVGWaveBackground from './components/SVGWaveBackground';
 import TopNav from './components/TopNav';
+import UnknowPage from './components/UnknowPage';
 import About from './containers/About';
-import theme from './theme';
+import Contact from './containers/Contact';
 import Header from './containers/Header';
 import Portfolio from './containers/Portfolio';
-import Skills from './containers/Skills';
-import Contact from './containers/Contact';
-import { Route, Router, Routes, useLocation } from 'react-router-dom';
 import ProjectDetails from './containers/ProjectDetails';
-import ScrollToTopButton from './components/ScrollTopButton';
+import Projects from './containers/Projects';
+import Skills from './containers/Skills';
+import theme from './theme';
 
 const Container = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -61,6 +63,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="*" element={<UnknowPage />} />
         </Routes>
       </Container>
       <ScrollToTopButton />
