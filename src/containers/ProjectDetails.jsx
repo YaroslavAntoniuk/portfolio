@@ -21,9 +21,9 @@ const PageContainer = styled(Box)(({ theme }) => ({
   background: '#060818',
   color: '#fff',
   padding: theme.spacing(2),
-  paddingBottom: theme.spacing(8),
   borderRadius: '12px',
-  marginBottom: theme.spacing(4),
+  marginBottom: theme.spacing(8),
+  height: 'auto',
 }));
 
 const BackButton = styled(Button)(() => ({
@@ -115,7 +115,6 @@ const ProjectDetails = () => {
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
               gap: 4,
-              mt: 4,
               width: '100%',
             }}
           >
@@ -130,7 +129,7 @@ const ProjectDetails = () => {
               <TechList techSections={techSections} />
             </Box>
 
-            <Box sx={{ flex: 1, width: '100%' }}>
+            <Box sx={{ flex: 1, width: '100%', height: '100%' }}>
               <ImageCarousel project={project} projectId={projectId} openFullscreen={openFullscreen} setActiveIndex={setActiveIndex} />
               <Features achievements={project?.achievements} />
             </Box>
