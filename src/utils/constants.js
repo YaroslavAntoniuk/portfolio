@@ -4,10 +4,6 @@ import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import NextJSIntroCert from '../assets/certs/next-js-intro-cert.png';
 import NextJSAICert from '../assets/certs/nextjs-ai-cert.png';
 import VanillaJSCert from '../assets/certs/vanilla-js-cert.png';
-import JSIcon from '../assets/skills/js.svg';
-import MongoDBIcon from '../assets/skills/mongodb.svg';
-import NodeJsIcon from '../assets/skills/nodejs.svg';
-import ReactIcon from '../assets/skills/react.svg';
 import CSSIcon from '../assets/skills/css.svg';
 import DockerIcon from '../assets/skills/docker.svg';
 import ExpressIcon from '../assets/skills/express.svg';
@@ -17,21 +13,36 @@ import GitIcon from '../assets/skills/git.svg';
 import GitHubIcon from '../assets/skills/github.svg';
 import GraphQLIcon from '../assets/skills/graphql.svg';
 import HTMLIcon from '../assets/skills/html.svg';
+import JSIcon from '../assets/skills/js.svg';
 import MailChimpIcon from '../assets/skills/mailchimp.svg';
 import MailgunIcon from '../assets/skills/mailgun.svg';
+import MongoDBIcon from '../assets/skills/mongodb.svg';
 import MaterialUIIcon from '../assets/skills/mui.svg';
 import MySQLIcon from '../assets/skills/mysql.svg';
 import NextJSIcon from '../assets/skills/nextjs.svg';
-import NodeIcon from '../assets/skills/nodejs.svg';
+import { default as NodeIcon, default as NodeJsIcon } from '../assets/skills/nodejs.svg';
 import OpenAIIcon from '../assets/skills/openai.svg';
 import PostgreSQLIcon from '../assets/skills/postgresql.svg';
 import ReactNativeIcon from '../assets/skills/react-native.svg';
 import ReactQueryIcon from '../assets/skills/react-query.svg';
+import ReactIcon from '../assets/skills/react.svg';
 import RedisIcon from '../assets/skills/redis.svg';
 import ReduxIcon from '../assets/skills/redux.svg';
 import StripeIcon from '../assets/skills/stripe.svg';
 import TailwindIcon from '../assets/skills/tailwind.svg';
 import TSIcon from '../assets/skills/ts.svg';
+
+import MoodAIPreview1 from '../assets/projects/moodai/preview1.png';
+import MoodAIPreview2 from '../assets/projects/moodai/preview2.png';
+import MoodAIPreview3 from '../assets/projects/moodai/preview3.png';
+import MoodAIPreview4 from '../assets/projects/moodai/preview4.png';
+import WhitelabelPreview1 from '../assets/projects/whitelabel/preview1.png';
+import TripAdmitThrivePreview1 from '../assets/projects/tripadmit/preview1.png';
+import TipDirectPreview1 from '../assets/projects/tipdirect/preview1.png';
+import HealthcarePreview1 from '../assets/projects/healthcare/preview1.png';
+import HealthcarePreview2 from '../assets/projects/healthcare/preview2.png';
+import HealthcarePreview3 from '../assets/projects/healthcare/preview3.png';
+import HealthcarePreview4 from '../assets/projects/healthcare/preview4.png';
 
 export const InfoItems = [
   { label: 'Years of Experience', value: '4+', icon: EngineeringIcon },
@@ -65,20 +76,32 @@ export const projects = [
     id: 1,
     label: 'Tip Direct Mobile & Web',
     description: 'Innovative digital tipping solution',
-    url: 'https://tripadmit.com/wp-content/uploads/2024/09/TipDirect-for-guides-1.webp',
+    url: TipDirectPreview1,
   },
   {
     id: 2,
     label: 'TripAdmit Thrive',
     description: 'Cloud-based online booking solution',
-    url: 'https://gdm-catalog-fmapi-prod.imgix.net/ProductScreenshot/83b2717d-46c8-4de7-8061-ce9e23f76bd1.png',
+    url: TripAdmitThrivePreview1,
   },
   {
     id: 3,
     label: 'Whitelabel',
     description: 'Ready-to-go website to roll out experiences',
-    url: 'https://images.squarespace-cdn.com/content/v1/5a81f556010027194b439cef/1567777210383-0TO8BDLYBUF9W78BRXS9/Ae_DemoHome.jpg',
+    url: WhitelabelPreview1,
   },
+  {
+    id: 4,
+    label: 'Mood AI',
+    description: 'The journal app for tracking your mood with the help of AI. Make records every day, track your mood, change your life.',
+    url: MoodAIPreview1,
+  },
+  {
+    id: 5,
+    label: 'HealthCare',
+    description: 'The HealthCare app helps users to stay healthy. This application allows you to choose your family doctor, create appointments, check your medical history and be in touch with your doctor always and everywhere.',
+    url: HealthcarePreview1,
+  }
 ];
 
 export const projectDetails = [
@@ -124,6 +147,9 @@ export const projectDetails = [
       'Mailgun',
       'Cloudinary',
     ],
+    images: [
+      { url: TipDirectPreview1 },
+    ],
   },
   {
     id: 2,
@@ -145,7 +171,10 @@ export const projectDetails = [
       'Redux',
       'Material UI',
       'fp-ts'
-    ]
+    ],
+    images: [
+      { url: TripAdmitThrivePreview1 },
+    ],
   },
   {
     id: 3,
@@ -168,7 +197,65 @@ export const projectDetails = [
       'Formik',
       'Redux'
     ],
+    images: [
+      { url: WhitelabelPreview1 },
+    ],
   },
+  {
+    id: 4,
+    label: 'Mood AI',
+    description: 'The journal app for tracking your mood with the help of AI. Make records every day, track your mood, change your life.',
+    achievements: [
+      'Pet project based on the passed course',
+    ],
+    technologies: [
+      'NextJS',
+      'Tailwind CSS',
+      'Prisma',
+      'Supabase',
+      'OpenAI',
+      'Langchain',
+      'React',
+    ],
+    images: [
+      { url: MoodAIPreview1 },
+      { url: MoodAIPreview2 },
+      { url: MoodAIPreview3 },
+      { url: MoodAIPreview4 },
+    ],
+    url: 'https://mood-ai-five-sepia.vercel.app/'
+  },
+  {
+    id: 5,
+    label: 'HealthCare',
+    description: 'The HealthCare app helps users to stay healthy. This application allows you to choose your family doctor, create appointments, check your medical history and be in touch with your doctor always and everywhere.',
+    achievements: [
+      'Implemented the app from scratch with a team, including the backend and frontend',
+    ],
+    technologiesWeb: [
+      'Typescript',
+      'React',
+      'Redux Toolkit',
+      'Sass',
+      'React Hook Form'
+    ],
+    technologiesBackend: [
+      'Node.js',
+      'Express',
+      'jsonwebtoken',
+      'yup',
+      'Typescript',
+      'Passport.js',
+      "Sequelize",
+      "PostgreSQL",
+    ],
+    images: [
+      { url: HealthcarePreview1 },
+      { url: HealthcarePreview2 },
+      { url: HealthcarePreview3 },
+      { url: HealthcarePreview4 },
+    ],
+  }
 ];
 
 export const PortfolioTabs = {
