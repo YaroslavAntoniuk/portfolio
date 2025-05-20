@@ -16,6 +16,7 @@ import Stats from '../components/Project/Stats';
 import TechList from '../components/Project/TechList';
 import { projectDetails } from '../utils/constants';
 import { getTechDetails } from '../utils/helper';
+import { trackEvent } from '../utils/mixpanel';
 
 const PageContainer = styled(Box)(({ theme }) => ({
   background: '#060818',
