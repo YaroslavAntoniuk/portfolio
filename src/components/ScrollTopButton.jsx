@@ -5,8 +5,10 @@ import { styled } from '@mui/material/styles';
 
 const ScrollTopFab = styled(Fab)(({ theme }) => ({
   position: 'fixed',
-  bottom: theme.spacing(4),
-  right: theme.spacing(4),
+  bottom: theme.spacing(12),
+  right: theme.spacing(2),
+  width: 60,
+  height: 60,
   zIndex: 999,
 }));
 

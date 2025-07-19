@@ -1,8 +1,9 @@
 import { ThemeProvider } from '@mui/material';
 import { styled } from '@mui/system';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import ScrollToTopButton from './components/ScrollTopButton';
+import ScrollToTop from './components/ScrollToTop';
 import SVGWaveBackground from './components/SVGWaveBackground';
 import TopNav from './components/TopNav';
 import UnknowPage from './components/UnknowPage';
@@ -15,7 +16,7 @@ import Projects from './containers/Projects';
 import Skills from './containers/Skills';
 import theme from './theme';
 import { trackEvent } from './utils/mixpanel';
-import ScrollToTop from './components/ScrollToTop';
+
 const Container = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -62,7 +63,7 @@ function App() {
       <SVGWaveBackground />
       <TopNav />
       <Container>
-      <ScrollToTop />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />

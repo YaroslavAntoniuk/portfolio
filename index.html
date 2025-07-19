@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,5 +9,18 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- ReplintraChat JavaScript Widget -->
+    <script src="https://replintrabackend-production.up.railway.app/api/v1/embed/widget.js?chatbotId=cmd63gt6w0005lligba7mi3tu"></script>
+    <script>
+      const chat = new ReplintraChat.Widget({
+        chatbotId: 'cmd63gt6w0005lligba7mi3tu',
+        embedApiKey:
+          'sk_embed_7942daf1ad43a68156f81eb9ac76c74979da27a72d644eb627d14897374cf140',
+        theme: 'light',
+        position: 'bottom-right',
+        width: 400,
+        height: 600,
+      });
+    </script>
   </body>
 </html>
